@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#11100e] text-[#e38b5b]">
+      <body className="min-h-full bg-[#11100e] text-[#f7f5f0]">
         <div
           className="mx-auto min-h-full w-full max-w-5xl px-6 sm:px-10"
           data-scramble-root
