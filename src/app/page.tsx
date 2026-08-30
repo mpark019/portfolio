@@ -27,7 +27,15 @@ export default function Home() {
             >
               bny
             </a>{" "}
-            and a software developer at mirai arcade.
+            and a software developer at{" "}
+            <a
+              className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]"
+              href="https://www.miraiarcade.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              mirai arcade
+            </a>{""}.
           </p>
           <p>i like building software that is reliable, useful, and a little easier to operate.</p>
         </div>
@@ -38,7 +46,11 @@ export default function Home() {
         <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-3 font-mono text-lg text-[#e38b5b]">
           {interests.map((interest) => (
             <li key={interest}>
-              {interest === "eating" ? (
+              {interest === "gaming" ? (
+                <a className="transition-colors hover:text-[#ffd0ad]" href="/gaming">
+                  /{interest} ↗
+                </a>
+              ) : interest === "eating" ? (
                 <a
                   className="transition-colors hover:text-[#ffd0ad]"
                   href="https://beliapp.co/app/mjpark019"
