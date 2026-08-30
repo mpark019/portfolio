@@ -1,6 +1,7 @@
 const externalLinks = [
   { href: "https://www.linkedin.com/in/matthew-park-b98ba1292/", label: "LinkedIn" },
   { href: "https://github.com/mpark019", label: "GitHub" },
+  { href: "/MPARK_Resume.pdf", label: "Resume"}
 ];
 
 export function Header() {
