@@ -1,23 +1,69 @@
+const interests = [
+  "rock climbing",
+  "gaming",
+  "traveling",
+  "eating",
+];
+
 export default function Home() {
   return (
-    <section className="max-w-4xl py-24 sm:py-32">
-      <h1 className="font-mono text-5xl font-bold tracking-[-0.08em] sm:text-7xl">matthew park</h1>
-      <div className="mt-10 space-y-8 font-mono text-xl leading-8 text-zinc-700 dark:text-zinc-300 sm:text-2xl sm:leading-9">
-        <p>
-          i&apos;m a computer science student at{" "}
-          <a className="text-violet-700 underline decoration-1 underline-offset-4 transition-colors hover:text-violet-500 dark:text-violet-400" href="https://www.ucf.edu" rel="noreferrer" target="_blank">
-            ucf
-          </a>{" "}
-          building full-stack and distributed software systems.
-        </p>
-        <p>
-          prev 2x swe intern @{" "}
-          <a className="text-violet-700 underline decoration-1 underline-offset-4 transition-colors hover:text-violet-500 dark:text-violet-400" href="https://www.bny.com" rel="noreferrer" target="_blank">
-            bny
-          </a>,{" "}
-          prev software developer @ mirai arcade
-        </p>
-      </div>
-    </section>
+    <main className="max-w-4xl pb-12 pt-12 sm:pb-16 sm:pt-16">
+      <section aria-labelledby="intro-heading" className="max-w-3xl" id="home">
+        <p className="font-mono text-sm text-[#b86c45]">based in orlando, florida</p>
+        <h1 className="mt-5 font-mono text-5xl font-bold tracking-[-0.08em] sm:text-7xl" id="intro-heading">
+          matthew park
+        </h1>
+        <div className="mt-9 space-y-5 font-mono text-xl leading-8 text-[#e38b5b] sm:text-2xl sm:leading-9">
+          <p>full-stack software engineer building reliable backend and distributed systems.</p>
+          <p>
+            currently studying computer science at{" "}
+            <a className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://www.ucf.edu" rel="noreferrer" target="_blank">
+              ucf
+            </a>
+            ; previously a software engineering intern at{" "}
+            <a
+              className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]"
+              href="https://www.bny.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              bny
+            </a>{" "}
+            and software developer at mirai arcade.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="interests-heading" className="mt-14 scroll-mt-10 sm:mt-16" id="interests">
+        <p className="font-mono text-sm text-[#b86c45]">interests</p>
+        <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-3 font-mono text-lg text-[#e38b5b]">
+          {interests.map((interest) => (
+            <li key={interest}>
+              {interest === "eating" ? (
+                <a
+                  className="transition-colors hover:text-[#ffd0ad]"
+                  href="https://beliapp.co/app/mjpark019"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  /{interest} ↗
+                </a>
+              ) : (
+                `/${interest}`
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="contact-heading" className="mt-14 scroll-mt-10 sm:mt-16" id="contact">
+        <p className="font-mono text-sm text-[#b86c45]">contact</p>
+        <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 font-mono text-lg">
+          <a className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="mailto:mjpark019@gmail.com">email</a>
+          <a className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://github.com/mpark019" rel="noreferrer" target="_blank">github ↗</a>
+          <a className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://www.linkedin.com/in/matthew-park-b98ba1292/" rel="noreferrer" target="_blank">linkedin ↗</a>
+        </div>
+      </section>
+    </main>
   );
 }
