@@ -72,7 +72,7 @@ export default function Home() {
         <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 font-mono text-lg">
           <a className="underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="mailto:mjpark019@gmail.com">email</a>
           <a className="underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://github.com/mpark019" rel="noreferrer" target="_blank">github ↗</a>
-          <a className="underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://www.linkedin.com/in/matthew-park-b98ba1292/" rel="noreferrer" target="_blank">linkedin ↗</a>
+          <a className="underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://www.linkedin.com/in/mjpark019/" rel="noreferrer" target="_blank">linkedin ↗</a>
         </div>
       </section>
     </main>
