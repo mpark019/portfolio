@@ -1,7 +1,8 @@
 const externalLinks = [
+  { href: "/projects", label: "projects" },
   { href: "https://www.linkedin.com/in/matthew-park-b98ba1292/", label: "linkedin" },
   { href: "https://github.com/mpark019", label: "github" },
-  { href: "/MPARK_Resume.pdf", label: "resume"}
+  { href: "/matthew-park-resume.pdf", label: "resume"}
 ];
 
 export function Header() {
@@ -12,7 +13,7 @@ export function Header() {
       </Link>
       <nav aria-label="External links" className="flex flex-wrap justify-end gap-2 font-mono text-sm">
         {externalLinks.map((link) => (
-          <a className="px-3 py-1.5 transition-colors hover:bg-[#2a1b14] hover:text-[#ffd0ad]" href={link.href} key={link.href} rel="noreferrer" target="_blank">
+          <a className="px-3 py-1.5 transition-colors hover:bg-[#2a1b14] hover:text-[#ffd0ad]" href={link.href} key={link.href} {...(link.href.startsWith("http") ? { rel: "noreferrer", target: "_blank" } : {})}>
             {link.label}
           </a>
         ))}

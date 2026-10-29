@@ -30,9 +30,7 @@ export default function Home() {
             and a software developer at{" "}
             <a
               className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]"
-              href="https://www.miraiarcade.com"
-              rel="noreferrer"
-              target="_blank"
+              href="/projects/mirai-arcade"
             >
               mirai arcade
             </a>{""}.
