@@ -3,11 +3,11 @@ import Link from "next/link";
 
 export default function MiraiArcade() {
   return (
-    <main className="mx-auto max-w-3xl pb-20 pt-12 font-mono text-lg leading-8 sm:pt-16">
+    <main className="mx-auto max-w-3xl pb-20 pt-12 font-mono text-base leading-8 sm:pt-16 sm:text-lg">
       <Link className="font-mono text-sm text-[#f0a06b] transition-colors hover:text-[#ffd0ad]" href="/projects">← back to projects</Link>
       <header className="mt-10 border-b border-[#49352a] pb-10">
         <h1 className="mt-4 font-mono text-4xl font-bold tracking-tight text-[#f0a06b] sm:text-5xl">mirai inventory management system</h1>
-        <p className="mt-6 text-lg leading-8 sm:text-xl">an event-driven system that centralizes inventory tracking, supports restock planning, and sends low-stock alerts.</p>
+        <p className="mt-6 text-base leading-8 sm:text-xl">an event-driven system that centralizes inventory tracking, supports restock planning, and sends low-stock alerts.</p>
         <p className="mt-5 text-[#ded1c8]">instead of reacting to stockouts, staff can use demand forecasts and reorder suggestions to plan ahead. forecasts update as inventory changes.</p>
         <p className="mt-6 font-mono text-sm text-[#ded1c8]">next.js · spring boot · postgresql · kafka · python</p>
         <video
