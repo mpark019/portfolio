@@ -44,7 +44,13 @@ export default function MiraiArcade() {
 
       <section className="mt-14" aria-labelledby="results">
         <h2 className="font-mono text-sm uppercase tracking-widest text-[#f0a06b]" id="results">results</h2>
-        <p className="mt-5 leading-8">the system gives employees a single place to record stock changes and gives managers a clearer view of inventory and restock needs. event-driven updates help keep forecasts and alerts aligned with daily operations.</p>
+        <p className="mt-5 leading-8">now used by 30+ staff, the rebuilt system responds faster and has reduced monthly costs by 50% compared with the previous system.</p>
+        <p className="mt-4 leading-8">it supports daily operations across the team:</p>
+        <ul className="mt-4 list-disc space-y-3 pl-6 leading-8">
+          <li>employees manage stock updates, transfers, and shipments in one place.</li>
+          <li>managers get a clearer view of stock levels and movement history.</li>
+          <li>demand forecasts and low-stock alerts help staff plan restocks before items run out.</li>
+        </ul>
       </section>
     </main>
   );
