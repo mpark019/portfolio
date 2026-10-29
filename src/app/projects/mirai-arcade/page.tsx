@@ -10,6 +10,16 @@ export default function MiraiArcade() {
         <p className="mt-6 text-lg leading-8 sm:text-xl">an event-driven system that centralizes inventory tracking, supports restock planning, and sends low-stock alerts.</p>
         <p className="mt-5 text-[#ded1c8]">instead of reacting to stockouts, staff can use demand forecasts and reorder suggestions to plan ahead. forecasts update as inventory changes.</p>
         <p className="mt-6 font-mono text-sm text-[#ded1c8]">next.js · spring boot · postgresql · kafka · python</p>
+        <video
+          className="mt-5 h-auto w-full rounded-xl"
+          src="/videos/mirai-demo.mp4"
+          aria-label="Mirai inventory management system demo"
+          controls
+          playsInline
+          preload="metadata"
+        >
+          <a href="/videos/mirai-demo.mp4">download the mirai demo video</a>
+        </video>
       </header>
 
       <section className="mt-14" aria-labelledby="client">

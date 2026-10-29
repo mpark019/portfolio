@@ -1,7 +1,5 @@
-const externalLinks = [
+const navigationLinks = [
   { href: "/projects", label: "projects" },
-  { href: "https://www.linkedin.com/in/matthew-park-b98ba1292/", label: "linkedin" },
-  { href: "https://github.com/mpark019", label: "github" },
   { href: "/matthew-park-resume.pdf", label: "resume"}
 ];
 
@@ -11,9 +9,9 @@ export function Header() {
       <Link className="px-3 py-1.5 font-mono text-sm transition-colors hover:bg-[#2a1b14] hover:text-[#ffd0ad]" href="/">
         home
       </Link>
-      <nav aria-label="External links" className="flex flex-wrap justify-end gap-2 font-mono text-sm">
-        {externalLinks.map((link) => (
-          <a className="px-3 py-1.5 transition-colors hover:bg-[#2a1b14] hover:text-[#ffd0ad]" href={link.href} key={link.href} {...(link.href.startsWith("http") ? { rel: "noreferrer", target: "_blank" } : {})}>
+      <nav aria-label="Main navigation" className="flex flex-nowrap justify-end gap-2 whitespace-nowrap font-mono text-sm">
+        {navigationLinks.map((link) => (
+          <a className="px-3 py-1.5 transition-colors hover:bg-[#2a1b14] hover:text-[#ffd0ad]" href={link.href} key={link.href}>
             {link.label}
           </a>
         ))}
