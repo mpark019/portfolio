@@ -13,17 +13,22 @@ function formatTime(seconds: number) {
   return `${minutes}:${remainingSeconds}`;
 }
 
+const volumeLevels = Array.from({ length: 100 }, (_, index) => index + 1);
+
 export default function GamingPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const volumeDialogRef = useRef<HTMLDialogElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(25);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    video.volume = 0.25;
     const syncPlayState = () => setIsPlaying(!video.paused);
     const syncTime = () => setCurrentTime(video.currentTime);
 
@@ -65,6 +70,14 @@ export default function GamingPage() {
 
     video.muted = !video.muted;
     setIsMuted(video.muted);
+  }
+
+  function changeVolume(nextVolume: number) {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.volume = nextVolume / 100;
+    setVolume(nextVolume);
   }
 
   return (
@@ -124,8 +137,66 @@ export default function GamingPage() {
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
           </div>
+          <button
+            className="mt-3 border-2 border-[#ffffff] bg-[#e9e8dd] px-3 py-1 text-sm shadow-[inset_-2px_-2px_0_#77766e,inset_2px_2px_0_#ffffff] active:shadow-[inset_2px_2px_0_#77766e]"
+            onClick={() => volumeDialogRef.current?.showModal()}
+            type="button"
+          >
+            advanced volume control...
+          </button>
         </div>
       </section>
+      <dialog
+        aria-labelledby="volume-dialog-title"
+        className="m-auto max-h-[calc(100dvh-2rem)] w-[min(90vw,56rem)] overflow-y-auto border-2 border-[#9b9b9b] bg-[#efefef] p-0 font-mono text-[#242424] shadow-[6px_6px_0_#4b4b45] backdrop:bg-black/60"
+        onClick={(event) => {
+          const dialog = event.currentTarget;
+          const { left, right, top, bottom } = dialog.getBoundingClientRect();
+          if (
+            event.target === dialog &&
+            (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom)
+          ) {
+            dialog.close();
+          }
+        }}
+        ref={volumeDialogRef}
+      >
+        <div className="flex items-center justify-between border-b border-[#dedede] bg-white pl-4">
+          <h2 className="text-base sm:text-lg" id="volume-dialog-title">Advanced Volume Control</h2>
+          <button
+            aria-label="Close volume control"
+            className="grid size-10 place-items-center text-2xl hover:bg-[#e5e5e5]"
+            onClick={() => volumeDialogRef.current?.close()}
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <div className="p-3 sm:p-5">
+          <fieldset className="border border-[#d4d4d4] px-3 pb-4 sm:px-4">
+            <legend className="px-1 text-base">Volume Control</legend>
+            <div className="grid grid-cols-4 gap-x-2 gap-y-3 sm:grid-cols-7 md:grid-cols-11">
+              {volumeLevels.map((level) => (
+                <label className="flex items-center gap-1.5 whitespace-nowrap text-sm sm:text-base" key={level}>
+                  <input
+                    checked={volume === level}
+                    className="size-4 shrink-0 accent-[#242424]"
+                    name="volume"
+                    onChange={() => changeVolume(level)}
+                    type="radio"
+                    value={level}
+                  />
+                  {level}
+                </label>
+              ))}
+            </div>
+            <label className="mt-5 flex items-center justify-center gap-2 text-base">
+              <input checked={isMuted} className="size-4 accent-[#242424]" onChange={toggleMute} type="checkbox" />
+              Mute
+            </label>
+          </fieldset>
+        </div>
+      </dialog>
     </main>
   );
 }
