@@ -16,14 +16,11 @@ export function CybertronianCursor() {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     let lastMove = 0;
-    let lastFrame = 0;
     let lastScramble = 0;
     let fontReady = false;
     let disposed = false;
     let pointerX = 0;
     let pointerY = 0;
-    let centerX = 0;
-    let centerY = 0;
     const radius = 110;
     const spacing = 23;
     const glyphs = new Map<string, string>();
@@ -53,27 +50,22 @@ export function CybertronianCursor() {
         return;
       }
 
-      const elapsed = Math.min(now - lastFrame, 50);
-      lastFrame = now;
       const scramble = now - lastScramble >= 60;
       if (scramble) lastScramble = now;
       const opacity = 0.38 * Math.max(0, 1 - Math.max(0, idle - 100) / 450);
-      const follow = 1 - Math.exp(-elapsed / 65);
-      centerX += (pointerX - centerX) * follow;
-      centerY += (pointerY - centerY) * follow;
       context!.font = "18px Cybertronian";
       context!.textAlign = "center";
       context!.textBaseline = "middle";
 
       // Anchor letters to document coordinates; only the reveal follows the mouse.
-      const column = Math.floor((centerX + window.scrollX) / spacing);
-      const row = Math.floor((centerY + window.scrollY) / spacing);
+      const column = Math.floor((pointerX + window.scrollX) / spacing);
+      const row = Math.floor((pointerY + window.scrollY) / spacing);
       const reach = Math.ceil(radius / spacing);
       for (let y = row - reach; y <= row + reach; y++) {
         for (let x = column - reach; x <= column + reach; x++) {
           const screenX = x * spacing - window.scrollX;
           const screenY = y * spacing - window.scrollY;
-          const distance = Math.hypot(screenX - centerX, screenY - centerY) / radius;
+          const distance = Math.hypot(screenX - pointerX, screenY - pointerY) / radius;
           if (distance >= 1) continue;
           const key = `${x},${y}`;
           let character = glyphs.get(key);
@@ -96,9 +88,6 @@ export function CybertronianCursor() {
       pointerY = event.clientY;
       lastMove = performance.now();
       if (!frame) {
-        centerX = pointerX;
-        centerY = pointerY;
-        lastFrame = lastMove;
         frame = window.requestAnimationFrame(draw);
       }
     }
