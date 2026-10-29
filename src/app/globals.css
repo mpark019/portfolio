@@ -18,6 +18,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@media (pointer: fine) {
+  body {
+    cursor: crosshair;
+  }
+
+  a,
+  button {
+    cursor: pointer;
+  }
+}
+
 @font-face {
   font-family: "Cybertronian";
   src: url("/fonts/Cybertronianfinal-Regular.ttf") format("truetype");
