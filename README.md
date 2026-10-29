@@ -11,7 +11,6 @@
 - `src/app/gaming/*` - Interactive gaming page with a custom retro video player.
 - `src/app/projects/page.tsx` - Projects listing at `/projects`.
 - `public/*` - Static assets, including the resume, Cybertronian font, project photos, and videos.
-- `next.config.ts` - Next.js configuration with React Compiler enabled.
 
 ## Running Locally
 
