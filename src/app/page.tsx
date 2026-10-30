@@ -18,7 +18,10 @@ export default function Home() {
             <a className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://www.ucf.edu" rel="noreferrer" target="_blank">
               ucf
             </a>
-            . i previously worked as a software engineering intern at{" "}
+            {" "}who enjoys understanding how things work and finding ways to improve them.
+          </p>
+          <p>
+            i&apos;m particularly interested in building reliable, useful software. i&apos;ve explored that interest through my experience as a software engineering intern at{" "}
             <a
               className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]"
               href="https://www.bny.com"
@@ -33,14 +36,13 @@ export default function Home() {
               href="/projects/mirai-arcade"
             >
               mirai arcade
-            </a>{""}.
+            </a>.
           </p>
-          <p>i like building software that is reliable, useful, and a little easier to operate.</p>
         </div>
       </section>
 
       <section aria-labelledby="interests-heading" className="mt-14 scroll-mt-10 sm:mt-16" id="interests">
-        <p className="font-mono text-sm text-[#f0a06b]">i&apos;m broadly interested in:</p>
+        <p className="font-mono text-sm text-[#f0a06b]">i&apos;m interested in:</p>
         <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-3 font-mono text-base sm:text-lg">
           {interests.map((interest) => (
             <li key={interest}>
