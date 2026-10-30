@@ -12,7 +12,7 @@ export default function Home() {
         <h1 className="font-mono text-5xl font-bold tracking-[-0.08em] text-[#f0a06b] sm:text-7xl" id="intro-heading">
           matthew park
         </h1>
-        <div className="mt-9 space-y-5 font-mono text-lg leading-8 sm:text-2xl sm:leading-9">
+        <div className="mt-9 max-w-2xl space-y-5 font-mono text-lg leading-7 sm:text-xl sm:leading-8">
           <p>
             i&apos;m a computer science student at{" "}
             <a className="text-[#f0a06b] underline decoration-1 underline-offset-4 transition-colors hover:text-[#ffd0ad]" href="https://www.ucf.edu" rel="noreferrer" target="_blank">

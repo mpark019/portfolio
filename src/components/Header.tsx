@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navigationLinks = [
@@ -9,7 +10,9 @@ const navigationLinks = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const [highlight, setHighlight] = useState({ left: 0, width: 0, visible: false });
+  const isProjectsPage = pathname === "/projects" || pathname.startsWith("/projects/");
 
   function highlightLink(link: HTMLAnchorElement) {
     setHighlight({ left: link.offsetLeft, width: link.offsetWidth, visible: true });
@@ -17,7 +20,7 @@ export function Header() {
 
   return (
     <header className="flex items-center justify-between py-6">
-      <Link className="px-3 py-1.5 font-mono text-sm transition-colors hover:bg-[#2a1b14] hover:text-[#ffd0ad]" href="/">
+      <Link aria-current={pathname === "/" ? "page" : undefined} className={`px-3 py-1.5 font-mono text-sm transition-colors hover:bg-[#2a1b14] hover:text-[#ffd0ad] ${pathname === "/" ? "text-[#ffd0ad]" : "text-[#ded1c8]"}`} href="/">
         home
       </Link>
       <nav
@@ -47,9 +50,10 @@ export function Header() {
         />
         {navigationLinks.map((link) => (
           <a
-            className="px-3 py-1.5 transition-colors duration-200 hover:text-[#ffd0ad] focus-visible:text-[#ffd0ad] motion-reduce:transition-none"
+            className={`px-3 py-1.5 transition-colors duration-200 hover:text-[#ffd0ad] focus-visible:text-[#ffd0ad] motion-reduce:transition-none ${link.href === "/projects" && isProjectsPage ? "text-[#ffd0ad]" : "text-[#ded1c8]"}`}
             href={link.href}
             key={link.href}
+            aria-current={link.href === "/projects" && isProjectsPage ? "location" : undefined}
             onMouseEnter={(event) => highlightLink(event.currentTarget)}
             onFocus={(event) => highlightLink(event.currentTarget)}
           >
