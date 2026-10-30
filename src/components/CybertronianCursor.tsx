@@ -46,14 +46,14 @@ export function CybertronianCursor() {
     function draw(now: number) {
       const idle = touchActive ? 0 : now - lastMove;
       clear();
-      if (idle >= 550) {
+      if (idle >= 750) {
         frame = 0;
         return;
       }
 
       const scramble = now - lastScramble >= 60;
       if (scramble) lastScramble = now;
-      const opacity = 0.38 * Math.max(0, 1 - Math.max(0, idle - 100) / 450);
+      const opacity = 0.38 * Math.max(0, 1 - Math.max(0, idle - 100) / 650);
       context!.font = "18px Cybertronian";
       context!.textAlign = "center";
       context!.textBaseline = "middle";
