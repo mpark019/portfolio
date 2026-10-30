@@ -21,6 +21,7 @@ export function CybertronianCursor() {
     let disposed = false;
     let pointerX = 0;
     let pointerY = 0;
+    let touchActive = false;
     const radius = 110;
     const spacing = 23;
     const glyphs = new Map<string, string>();
@@ -43,7 +44,7 @@ export function CybertronianCursor() {
     }
 
     function draw(now: number) {
-      const idle = now - lastMove;
+      const idle = touchActive ? 0 : now - lastMove;
       clear();
       if (idle >= 550) {
         frame = 0;
@@ -82,18 +83,38 @@ export function CybertronianCursor() {
       frame = window.requestAnimationFrame(draw);
     }
 
-    function move(event: PointerEvent) {
-      if (event.pointerType !== "mouse" || motion.matches || !fontReady) return;
-      pointerX = event.clientX;
-      pointerY = event.clientY;
+    function updatePosition(x: number, y: number) {
+      if (motion.matches || !fontReady) return;
+      pointerX = x;
+      pointerY = y;
       lastMove = performance.now();
       if (!frame) {
         frame = window.requestAnimationFrame(draw);
       }
     }
 
+    function move(event: PointerEvent) {
+      if (event.pointerType === "mouse") updatePosition(event.clientX, event.clientY);
+    }
+
+    function touchMove(event: TouchEvent) {
+      const touch = event.touches[0];
+      if (!touch) return;
+      touchActive = true;
+      updatePosition(touch.clientX, touch.clientY);
+    }
+
+    function touchEnd(event: TouchEvent) {
+      if (event.touches.length) {
+        touchMove(event);
+        return;
+      }
+      touchActive = false;
+      lastMove = performance.now();
+    }
+
     function leave(event: PointerEvent) {
-      if (!event.relatedTarget) stop();
+      if (event.pointerType === "mouse" && !event.relatedTarget) stop();
     }
 
     resize();
@@ -102,6 +123,10 @@ export function CybertronianCursor() {
       () => {},
     );
     window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("touchstart", touchMove, { passive: true });
+    window.addEventListener("touchmove", touchMove, { passive: true });
+    window.addEventListener("touchend", touchEnd, { passive: true });
+    window.addEventListener("touchcancel", touchEnd, { passive: true });
     window.addEventListener("pointerout", leave);
     window.addEventListener("blur", stop);
     window.addEventListener("resize", resize);
@@ -112,6 +137,10 @@ export function CybertronianCursor() {
       disposed = true;
       stop();
       window.removeEventListener("pointermove", move);
+      window.removeEventListener("touchstart", touchMove);
+      window.removeEventListener("touchmove", touchMove);
+      window.removeEventListener("touchend", touchEnd);
+      window.removeEventListener("touchcancel", touchEnd);
       window.removeEventListener("pointerout", leave);
       window.removeEventListener("blur", stop);
       window.removeEventListener("resize", resize);
